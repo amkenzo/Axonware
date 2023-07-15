@@ -18,8 +18,6 @@ getgenv().Axonware = {
     SlashDistance = 10;
     AutoEquipMeleeForParry = false;
     ParryDistance = 10;
-    AutoHealWithPotion = false;
-    MinimunHealth = 50;
 }
 
 local Players = game:GetService('Players')
@@ -233,13 +231,10 @@ local Window = UserInterface:CreateWindow({
 }, CoreGui)
 
 local CombatTab = Window:CreateTab('Combat')
-local Utilities = Window:CreateTab('Utilities')
 local SettingsTab = Window:CreateTab('Settings')
 
 local MeleeSection = CombatTab:CreateSection('Melee')
 local ParrySection = CombatTab:CreateSection('Parry')
-
-local HealSection = Utilities:CreateSection('Heal')
 
 local UISection = SettingsTab:CreateSection('UI')
 
@@ -277,14 +272,6 @@ end)
 
 ParrySection:CreateSlider('Parry Distance', 1, 25, 10, true, function(Value)
     Axonware.ParryDistance = tonumber(Value)
-end)
-
-HealSection:CreateToggle('Auto Heal With Potion', false, function(Value)
-    Axonware.AutoHealWithPotion = Value
-end)
-
-HealSection:CreateSlider('Minimun Health', 0, 100, 50, true, function(Value)
-    Axonware.MinimunHealth = tonumber(Value)
 end)
 
 UIVisible = UISection:CreateToggle('Visible', true, function(Value)

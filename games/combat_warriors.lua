@@ -124,24 +124,16 @@ function GetClosestPlayer(Distance)
 end
 
 function IsParryOnCooldown()
-    local Indicator = PlayerGui.RoactUI:FindFirstChild('BottomStatusIndicators')
+    pcall(function()
+    	local Indicator = PlayerGui.RoactUI:FindFirstChild('BottomStatusIndicators')
     
-    if Indicator then
-        if Indicator.FrameContainer.SecondRowFrame.ActionCooldownsFrame.ParryActionCooldown.BarClipper.RealBar.Size.Y.Scale <= 1 then
-            return false
-        end
-    end
+	    if Indicator then
+	        if Indicator.FrameContainer.SecondRowFrame.ActionCooldownsFrame.ParryActionCooldown.BarClipper.RealBar.Size.Y.Scale <= 1 then
+	            return false
+	        end
+	    end
+    end)
     
-    return true
-end
-
-function IsSlashOnCooldown(Melee)
-    local CooldownProgress = Melee:FindFirstChild('CooldownProgress')
-    
-    if (CooldownProgress and CooldownProgress:IsA('NumberValue') and CooldownProgress.Value == 1) then
-        return false
-    end
-
     return true
 end
 
@@ -292,29 +284,32 @@ end)
 
 RunService.Heartbeat:Connect(function()
     task.spawn(function()
-        local ClosestTarget = GetClosestPlayer(Axonware.SlashDistance)
-        
-        if (ClosestTarget and ClosestTarget:FindFirstChild('Humanoid')) then
-            if (LocalMelee and LocalMelee.Parent ~= LocalPlayer.Character and not IsSlashOnCooldown(LocalMelee)) then
-                local Melee = GetMelee(ClosestTarget)
-		local Shield = GetShield(ClosestTarget)
-                
-                if (Melee and Shield and IsParry(ClosestTarget, Melee.Name)) then
-                    return
-                end
-                
-                if tonumber(ClosestTarget.Humanoid.Health) > 20 then
-                    if Axonware.AutoSlash then
-                        mouse1click()
-                    end
-                else
-                    if Axonware.AutoGloryKill then
-                        keypress(0x47)
-                        task.wait()
-                        keyrelease(0x47)
-                    end
-                end
-		    end
-		end
+		pcall(function()
+			if PlayerGui.RoactUI:FindFirstChild('BottomStatusIndicators') then
+		        local ClosestTarget = GetClosestPlayer(Axonware.SlashDistance)
+		        
+		        if (ClosestTarget and ClosestTarget:FindFirstChild('Humanoid')) then
+		            if (LocalMelee and LocalMelee.Parent ~= LocalPlayer.Character and not IsSlashOnCooldown(LocalMelee)) then
+		                local Melee = GetMelee(ClosestTarget)
+		                
+		                if (Melee and IsParry(ClosestTarget, Melee.Name)) then
+		                    return
+		                end
+		                
+		                if tonumber(ClosestTarget.Humanoid.Health) > 20 then
+		                    if Axonware.AutoSlash then
+		                        mouse1click()
+		                    end
+		                else
+		                    if Axonware.AutoGloryKill then
+		                        keypress(0x47)
+		                        task.wait()
+		                        keyrelease(0x47)
+		                    end
+		                end
+				    end
+				end
+			end
+		end)
 	end)
 end)

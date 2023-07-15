@@ -299,7 +299,7 @@ RunService.Heartbeat:Connect(function()
                 local Melee = GetMelee(ClosestTarget)
 		local Shield = GetShield(ClosestTarget)
                 
-                if (Melee and Shield and IsParry(ClosestTarget, Melee.Name) then
+                if (Melee and Shield and IsParry(ClosestTarget, Melee.Name)) then
                     return
                 end
                 

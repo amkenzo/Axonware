@@ -286,7 +286,7 @@ RunService.Heartbeat:Connect(function()
 			local ClosestTarget = GetClosestPlayer(Axonware.SlashDistance)
 		        
 		    if (ClosestTarget and ClosestTarget:FindFirstChild('Humanoid')) then
-				if (LocalMelee and LocalMelee.Parent ~= LocalPlayer.Character) then
+				if (LocalMelee and LocalMelee.Parent == LocalPlayer.Character) then
 					local Melee = GetMelee(ClosestTarget)
 		                
 		            if (Melee and IsParry(ClosestTarget, Melee.Name)) then

@@ -6,7 +6,7 @@
 
 repeat task.wait() until game:IsLoaded()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/amkenzo/axonware/main/utilities/monetize.lua"))()
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/amkenzo/axonware/main/utilities/monetize.lua"))()
 
 getgenv().Axonware = {
     AntiParry = false;
@@ -286,7 +286,7 @@ RunService.Heartbeat:Connect(function()
 			local ClosestTarget = GetClosestPlayer(Axonware.SlashDistance)
 		        
 		    if (ClosestTarget and ClosestTarget:FindFirstChild('Humanoid')) then
-				if (LocalMelee and LocalMelee.Parent ~= LocalPlayer.Character and not IsSlashOnCooldown(LocalMelee)) then
+				if (LocalMelee and LocalMelee.Parent ~= LocalPlayer.Character) then
 					local Melee = GetMelee(ClosestTarget)
 		                
 		            if (Melee and IsParry(ClosestTarget, Melee.Name)) then

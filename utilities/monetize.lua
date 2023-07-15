@@ -1,4 +1,4 @@
-local Title = "Axonware - Please visit the website to support creator."
+local Title = "Axonware - Support the creator."
 
 local API_HOST = "s1.wayauth.com"
 local LINKVERTISE_ID = 539927

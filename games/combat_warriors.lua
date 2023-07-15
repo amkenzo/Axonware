@@ -4,9 +4,9 @@
     |-------------------------------------|
 ]]--
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/amkenzo/axonware/main/utilities/monetize.lua"))()
-
 repeat task.wait() until game:IsLoaded()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/amkenzo/axonware/main/utilities/monetize.lua"))()
 
 getgenv().Axonware = {
     AntiParry = false;

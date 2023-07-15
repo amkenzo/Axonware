@@ -43,7 +43,6 @@ function Task:verify()
 
     if Response.success then
         if Response.validator:upper() == self.Validator:upper() then
-            print('success')
             return true
         end
     end
@@ -58,7 +57,7 @@ function Task:copyLink()
     return setclipboard(Url)
 end
 
-local nTask = Task.new(nil, 539927, 1, 300)
+local nTask = Task.new(nil, 539927, 1, math.huge)
 local Verified = false
 
 nTask:create()

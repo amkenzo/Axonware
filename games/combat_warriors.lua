@@ -297,8 +297,9 @@ RunService.Heartbeat:Connect(function()
         if (ClosestTarget and ClosestTarget:FindFirstChild('Humanoid')) then
             if (LocalMelee and LocalMelee.Parent ~= LocalPlayer.Character and not IsSlashOnCooldown(LocalMelee)) then
                 local Melee = GetMelee(ClosestTarget)
+		local Shield = GetShield(ClosestTarget)
                 
-                if Melee and IsParry(ClosestTarget, Melee.Name) then
+                if (Melee and Shield and IsParry(ClosestTarget, Melee.Name) then
                     return
                 end
                 

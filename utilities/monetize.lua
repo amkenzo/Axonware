@@ -58,7 +58,7 @@ function Task:copyLink()
     return setclipboard(Url)
 end
 
-local nTask = Task.new(nil, 539927, 3, 300)
+local nTask = Task.new(nil, 539927, 1, 300)
 local Verified = false
 
 nTask:create()

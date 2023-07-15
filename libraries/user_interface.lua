@@ -3,8 +3,6 @@
     | Original by ???                     |
     | Modified by Axon                    |
     |-------------------------------------|
-    | Last Modified 7/14/2023             |
-    |-------------------------------------|
 ]]--
 
 local Library = {Toggle = true,FirstTab = nil,TabCount = 0,ColorTable = {}}

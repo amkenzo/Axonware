@@ -282,7 +282,6 @@ end)
 
 RunService.Heartbeat:Connect(function()
     task.spawn(function()
-		if PlayerGui.RoactUI:FindFirstChild('BottomStatusIndicators') then
 			local ClosestTarget = GetClosestPlayer(Axonware.SlashDistance)
 		        
 		    if (ClosestTarget and ClosestTarget:FindFirstChild('Humanoid')) then
@@ -306,6 +305,5 @@ RunService.Heartbeat:Connect(function()
 					end
 				end
 			end
-		end
 	end)
 end)

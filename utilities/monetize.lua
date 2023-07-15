@@ -9,12 +9,13 @@
 
 local HttpService = game:GetService("HttpService")
 
+local Iris = loadstring(game:HttpGet("https://raw.githubusercontent.com/x0581/Iris-Exploit-Bundle/main/bundle.lua"))().Init(game.CoreGui)
 local SHA2 = loadstring(game:HttpGet("https://raw.githubusercontent.com/Egor-Skriptunoff/pure_lua_SHA/master/sha2.lua"))()
 
-local Utility = {}
-Utility.__index = Utility
+local Task = {}
+Task.__index = Task
 
-function Utility.new(Api, Id, Layer, Expire)
+function Task.new(Api, Id, Layer, Expire)
     local self = {}
 
     self.Api = Api or 's1.wayauth.com'
@@ -23,10 +24,10 @@ function Utility.new(Api, Id, Layer, Expire)
     self.Expire = Expire or 0
     self.Validator = SHA2.sha256(os.date('%d%m%Y'))
 
-    return setmetatable(self, Monetize)
+    return setmetatable(self, Task)
 end
 
-function Utility:create()
+function Task:create()
     local Base = 'http://%s/v2/create/%s/%s/%s'
     local Url = Base:format(self.Api, self.Id, self.Validator, self.Layer)
 
@@ -35,7 +36,7 @@ function Utility:create()
     return self.Task
 end
 
-function Utility:verify()
+function Task:verify()
     local Base = 'http://%s/v2/verify/%s/%s/%s'
     local Url = Base:format(self.Api, self.Task.id, self.Secret, self.Expire)
     local Response = HttpService:JSONDecode(game:HttpGet(Url))
@@ -52,11 +53,37 @@ function Utility:verify()
     return false
 end
 
-function Utility:getLink()
+function Task:copyLink()
     local Base = 'http://%s/v2/wait/%s'
     local Url = Base:format(self.Api, self.Task.id)
 
-    return Url
+    return setclipboard(Url)
 end
 
-return Monetize
+local nTask = Task.new(nil, 539927, 3, 300)
+local Verified = false
+
+nTask:create()
+
+Iris:Connect(function()
+    if not Verified then
+        Iris.Window({'Axonware - Support The Creator', [Iris.Args.Window.NoClose] = true, [Iris.Args.Window.NoResize] = true, [Iris.Args.Window.NoScrollbar] = true, [Iris.Args.Window.NoCollapse] = true}, {size = Iris.State(Vector2.new(375, 60))}) do
+            Iris.SameLine() do
+                if Iris.Button({"Verify"}).clicked then
+                    task.spawn(function()
+                        Verified = nTask:verify()
+                    end)
+                end
+                if Iris.Button({"Copy Link"}).clicked then
+                    nTask:copyLink()
+                end
+                Iris.End()
+            end
+            Iris.End()
+        end
+    end
+end)
+
+repeat task.wait() until Verified
+
+warn('Thanks For The Support, Have Fun!')

@@ -20,7 +20,7 @@ function Task.new(Api, Id, Layer, Expire)
     self.Id = Id or 12345
     self.Layer = Layer or 1
     self.Expire = Expire or 0
-    self.Validator = SHA2.sha256(os.date('%d%m%Y'.. tostring(math.random(1, 999)))
+    self.Validator = SHA2.sha256(os.date('%d%m%Y'..tostring(math.random(1, 999))))
 
     return setmetatable(self, Task)
 end

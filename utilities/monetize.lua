@@ -2,7 +2,7 @@ local Title = "Axonware - Support the creator."
 
 local API_HOST = "s1.wayauth.com"
 local LINKVERTISE_ID = 539927
-local LINKVERTISE_COUNT = 2
+local LINKVERTISE_COUNT = 1
 local TOKEN_EXPIRE_TIME = 0
 
 local Task = {}

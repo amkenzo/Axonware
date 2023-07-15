@@ -3,8 +3,6 @@
     | Original by Mike                    |
     | Modified by Axon                    |
     |-------------------------------------|
-    | Last Modified 7/14/2023             |
-    |-------------------------------------|
 ]]--
 
 local HttpService = game:GetService("HttpService")
